@@ -1,10 +1,15 @@
 package students.items;
 
-public class Apples extends Item{
+public class Apples extends Food{
+	private int age = 0;
+	private int maturationAge;
+	private int deathAge;
+	private int monteryValue;
+	private String itemName = " ";
 	int appleObject = 0;
 
-	public Apples(int age, int maturationAge, int deathAge, int monteryValue, String itemName) {
-		super(age, maturationAge, deathAge, monteryValue, itemName);
+	public Apples(int maturationAge, int deathAge, int monteryValue) {
+		super(maturationAge, deathAge, monteryValue);
 		maturationAge = 3;
 		deathAge = 5;
 		monteryValue = 3;

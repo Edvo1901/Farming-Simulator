@@ -10,12 +10,10 @@ public class Item {
 	private String itemName = " ";
 	
 	//Initialize variable
-	public Item(int age, int maturationAge, int deathAge, int monteryValue, String itemName) {
-		this.age = 0;
+	public Item(int maturationAge, int deathAge, int monteryValue) {
 		this.maturationAge = maturationAge;
 		this.deathAge = deathAge;
 		this.monteryValue = monteryValue;
-		this.itemName = itemName;
 	}
 	
 	//A method that will increase "age" variable by 1
@@ -26,6 +24,10 @@ public class Item {
 	//Set another age for "age" method
 	public void setAge(int newAge) {
 		this.age = newAge;
+	}
+	
+	public int getAge() {
+		return this.age;
 	}
 	
 	//Return boolean to check if object meet the died condition
@@ -64,7 +66,19 @@ public class Item {
 		return false;
 	}
 	
-	public abstract String toString() {
-		//Leave this for now
+	public String toString() {
+		return " ";
 	}
+	
+	
+//	public static void main(String[] args) {
+//		Apples apple = new Apples(1, 1, 1);
+//		apple.setAge(3);
+//		
+//		Grain grain = new Grain(1, 1, 1);
+//		Grain grain2 = new Grain(1, 1, 1);
+//		System.out.println(grain.equals(grain2));
+//		
+//	}
+	
 }
