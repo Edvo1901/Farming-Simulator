@@ -6,12 +6,14 @@ public class Item {
 	private int maturationAge;
 	private int deathAge;
 	private int monteryValue;
+	private String itemName = " ";
 	
-	public Item(int age, int maturationAge, int deathAge, int monteryValue) {
+	public Item(int age, int maturationAge, int deathAge, int monteryValue, String itemName) {
 		this.age = 0;
 		this.maturationAge = maturationAge;
 		this.deathAge = deathAge;
 		this.monteryValue = monteryValue;
+		this.itemName = itemName;
 	}
 	
 	public void tick() {
