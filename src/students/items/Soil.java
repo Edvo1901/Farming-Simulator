@@ -12,9 +12,9 @@ public class Soil extends Item {
 		super(maturationAge, deathAge, monteryValue);
 		maturationAge = Double.POSITIVE_INFINITY;
 		deathAge = Double.POSITIVE_INFINITY;
-		monteryValue = -1;
+		monteryValue = 0;
 		
-		itemName = "#";
+		itemName = ".";
 	}
 	
 }
