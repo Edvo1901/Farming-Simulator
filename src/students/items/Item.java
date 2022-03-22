@@ -3,14 +3,14 @@ package students.items;
 public class Item {
 	
 	//Declare variable of the class
-	private int age = 0;
-	private int maturationAge;
-	private int deathAge;
-	private int monteryValue;
-	private String itemName = " ";
+	private double age = 0;
+	private double maturationAge;
+	private double deathAge;
+	private double monteryValue;
+	private String itemName = "default";
 	
 	//Initialize variable
-	public Item(int maturationAge, int deathAge, int monteryValue) {
+	public Item(double maturationAge, double deathAge, double monteryValue) {
 		this.maturationAge = maturationAge;
 		this.deathAge = deathAge;
 		this.monteryValue = monteryValue;
@@ -22,12 +22,16 @@ public class Item {
 	}
 	
 	//Set another age for "age" method
-	public void setAge(int newAge) {
+	public void setAge(double newAge) {
 		this.age = newAge;
 	}
 	
-	public int getAge() {
+	public double getAge() {
 		return this.age;
+	}
+	
+	public String getName() {
+		return this.itemName;
 	}
 	
 	//Return boolean to check if object meet the died condition
@@ -39,7 +43,7 @@ public class Item {
 	}
 	
 	//Return value if the age is larger than maturationAge
-	public int getValue() {
+	public double getValue() {
 		if (this.age > this.maturationAge) {
 			return this.monteryValue;
 		}
@@ -71,14 +75,12 @@ public class Item {
 	}
 	
 	
-//	public static void main(String[] args) {
-//		Apples apple = new Apples(1, 1, 1);
-//		apple.setAge(3);
-//		
-//		Grain grain = new Grain(1, 1, 1);
-//		Grain grain2 = new Grain(1, 1, 1);
-//		System.out.println(grain.equals(grain2));
-//		
-//	}
+	public static void main(String[] args) {
+		Apples apple = new Apples(4,1,1);
+		Apples apple2 = new Apples(1,1,1);
+		
+		System.out.println(apple.getGenerationCount());
+		
+	}
 	
 }

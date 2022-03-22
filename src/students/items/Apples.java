@@ -1,29 +1,36 @@
 package students.items;
 
 public class Apples extends Food{
-	private int age = 0;
-	private int maturationAge;
-	private int deathAge;
-	private int monteryValue;
+	private double age = 0;
+	private double maturationAge;
+	private double deathAge;
+	private double monteryValue;
 	private String itemName = " ";
-	int appleObject = 0;
+	double appleObject = 0;
 
-	public Apples(int maturationAge, int deathAge, int monteryValue) {
+	public Apples(double maturationAge, double deathAge, double monteryValue) {
 		super(maturationAge, deathAge, monteryValue);
 		maturationAge = 3;
 		deathAge = 5;
 		monteryValue = 3;
 		
+		getCall++;
+	}
+	
+	public double getGenerationCount() {
+		return getCall;
+	}
+	
+	public String getName() {
 		if (age < maturationAge) {
 			itemName = "a";
 		} else {
 			itemName = "A";
 		}
-		
-		appleObject++;
+		return itemName;
 	}
 	
-	public int getGenerationCount() {
-		return appleObject;
-	}
+	public static int getCall=0;
+	
+
 }
