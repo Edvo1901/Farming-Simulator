@@ -1,6 +1,6 @@
 package students.items;
 
-public class Item {
+public abstract class Item {
 	
 	//Declare variable of the class
 	private double age = 0;

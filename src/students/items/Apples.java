@@ -21,7 +21,7 @@ public class Apples extends Food{
 		return getCall;
 	}
 	
-	public String getName() {
+	public String toString() {
 		if (age < maturationAge) {
 			itemName = "a";
 		} else {

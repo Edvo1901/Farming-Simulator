@@ -21,7 +21,7 @@ public class Grain extends Food{
 		return getCall;
 	}
 	
-	public String getName() {
+	public String toString() {
 		if (age < maturationAge) {
 			itemName = "g";
 		} else {
