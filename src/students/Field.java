@@ -76,6 +76,19 @@ public class Field {
 		}
 	}
 	
+	public void plant(int x, int y, Food item) {
+		this.spot[y - 1][x - 1] = item;
+	}
+	
+	public void till(int x, int y) {
+		for (int i = 0; i < this.height; i ++) {
+			for (int j = 0; j < this.width; j ++) {
+				Soil newSoil = new Soil();
+				this.spot[y-1][x-1] = newSoil;
+			}
+		}
+			
+	}
 	
 	
 	public int getValue() {
