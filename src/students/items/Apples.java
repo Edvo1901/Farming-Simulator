@@ -17,7 +17,7 @@ public class Apples extends Food{
 		getCall++;
 	}
 	
-	public double getGenerationCount() {
+	public static int getGenerationCount() {
 		return getCall;
 	}
 	

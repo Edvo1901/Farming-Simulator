@@ -17,7 +17,7 @@ public class Grain extends Food{
 		getCall++;
 	}
 	
-	public double getGenerationCount() {
+	public static int getGenerationCount() {
 		return getCall;
 	}
 	
