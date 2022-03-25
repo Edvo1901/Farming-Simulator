@@ -90,6 +90,9 @@ public class Field {
 			
 	}
 	
+	public String get(int x, int y) {
+		return this.spot[y - 1][x - 1].getName();
+	}
 	
 	public int getValue() {
 		Dictionary<String, Integer> totalValue = new Hashtable<String, Integer>();
@@ -111,6 +114,9 @@ public class Field {
 		return totalValue;
 	}
 	
+	public String getSummary() {
+		
+	}
 	
 	public static void main(String[] args) {
 		Field a = new Field(5, 10);
