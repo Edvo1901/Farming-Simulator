@@ -1,18 +1,10 @@
 package students.items;
 
 public class Apples extends Food{
-	private double age = 0;
-	private double maturationAge;
-	private double deathAge;
-	private double monteryValue;
-	private String itemName = " ";
 	double appleObject = 0;
 
-	public Apples(double maturationAge, double deathAge, double monteryValue) {
-		super(maturationAge, deathAge, monteryValue);
-		maturationAge = 3;
-		deathAge = 5;
-		monteryValue = 3;
+	public Apples() {
+		super(3, 5, 3);
 		
 		getCall++;
 	}
@@ -22,10 +14,10 @@ public class Apples extends Food{
 	}
 	
 	public String toString() {
-		if (age < maturationAge) {
-			itemName = "a";
+		if (this.age < this.maturationAge) {
+			this.itemName = "a";
 		} else {
-			itemName = "A";
+			this.itemName = "A";
 		}
 		return itemName;
 	}

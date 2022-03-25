@@ -8,11 +8,8 @@ public class Grain extends Food{
 	private String itemName = " ";
 	
 
-	public Grain(double maturationAge, double deathAge, double monteryValue) {
-		super(maturationAge, deathAge, monteryValue);
-		maturationAge = 2;
-		deathAge = 6;
-		monteryValue = 2;
+	public Grain() {
+		super(2, 6, 2);
 		
 		getCall++;
 	}
@@ -22,12 +19,12 @@ public class Grain extends Food{
 	}
 	
 	public String toString() {
-		if (age < maturationAge) {
-			itemName = "g";
+		if (this.age < this.maturationAge) {
+			this.itemName = "g";
 		} else {
-			itemName = "G";
+			this.itemName = "G";
 		}
-		return itemName;
+		return this.itemName;
 	}
 	
 	public static int getCall=0;

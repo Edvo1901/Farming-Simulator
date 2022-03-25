@@ -3,11 +3,11 @@ package students.items;
 public abstract class Item {
 	
 	//Declare variable of the class
-	private double age = 0;
-	private double maturationAge;
-	private double deathAge;
-	private double monteryValue;
-	private String itemName = "default";
+	protected double age = 0;
+	protected double maturationAge;
+	protected double deathAge;
+	protected double monteryValue;
+	protected String itemName = "default";
 	
 	//Initialize variable
 	public Item(double maturationAge, double deathAge, double monteryValue) {
@@ -43,9 +43,9 @@ public abstract class Item {
 	}
 	
 	//Return value if the age is larger than maturationAge
-	public double getValue() {
+	public int getValue() {
 		if (this.age > this.maturationAge) {
-			return this.monteryValue;
+			return (int)this.monteryValue;
 		}
 		//Return 0 as null by default
 		return 0;

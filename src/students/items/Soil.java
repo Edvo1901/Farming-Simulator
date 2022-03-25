@@ -8,13 +8,13 @@ public class Soil extends Item {
 	private double monteryValue;
 	private String itemName = " ";
 
-	public Soil(double maturationAge, double deathAge, double monteryValue) {
+	public Soil() {
 		super(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, 0);
 	}
 	
 	public String toString() {
-		itemName = ".";
-		return itemName;
+		this.itemName = ".";
+		return this.itemName;
 	}
 	
 }

@@ -8,13 +8,13 @@ public class UntilledSoil extends Item {
 	private double monteryValue;
 	private String itemName = " ";
 
-	public UntilledSoil(double maturationAge, double deathAge, double monteryValue) {
+	public UntilledSoil() {
 		super(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, -1);
 	}
 	
 	public String toString() {
-		itemName = "/";
-		return itemName;
+		this.itemName = "/";
+		return this.itemName;
 	}
 
 

@@ -8,15 +8,15 @@ public class Weed extends Item {
 	private double monteryValue;
 	private String itemName = " ";
 
-	public Weed(double maturationAge, double deathAge, double monteryValue) {
+	public Weed() {
 		super(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, -1);
 		
-		itemName = "#";
+		this.itemName = "#";
 	}
 	
 	public String toString() {
-		itemName = "#";
-		return itemName;
+		this.itemName = "#";
+		return this.itemName;
 	}
 
 }
