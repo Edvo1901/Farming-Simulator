@@ -74,13 +74,4 @@ public abstract class Item {
 		return " ";
 	}
 	
-	
-	public static void main(String[] args) {
-		Apples apple = new Apples(4,1,1);
-		Apples apple2 = new Apples(1,1,1);
-		
-		System.out.println(apple.getGenerationCount());
-		
-	}
-	
 }
