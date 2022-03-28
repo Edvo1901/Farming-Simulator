@@ -84,17 +84,15 @@ public class Field {
 	}
 	
 	public void till(int x, int y) {
-		for (int i = 0; i < this.height; i ++) {
-			for (int j = 0; j < this.width; j ++) {
-				Soil newSoil = new Soil();
-				this.spot[y-1][x-1] = newSoil;
-			}
-		}
+		
+		Soil newSoil = new Soil();
+		this.spot[y][x] = newSoil;
+
 			
 	}
 	
-	public String get(int x, int y) {
-		return this.spot[y - 1][x - 1].getName();
+	public Item get(int x, int y) {
+		return this.spot[y][x];
 	}
 	
 	public int getValue() {
