@@ -94,27 +94,35 @@ public class Field {
 		return this.spot[y - 1][x - 1].getName();
 	}
 	
-	public int getValue() {
-		Dictionary<String, Integer> totalValue = new Hashtable<String, Integer>();
-		
-		int totalAppleValue = 0;
-		int totalGrainValue = 0;
-		for (int i = 0; i < this.height; i ++) {
-			for (int j = 0; j < this.width; j ++) {
-				this.spot[i][j].getValue();
-				
-				if (this.spot[i][j].toString().equals("A")) {
-					totalAppleValue += this.spot[i][j].getValue();
-				} else if (this.spot[i][j].toString().equals("G")) {
-					totalGrainValue += this.spot[i][j].getValue();
-					
-				}
-			}
-		}
-		return totalValue;
-	}
+//	public int getValue() {
+//		Dictionary<String, Integer> totalValue = new Hashtable<String, Integer>();
+//		
+//		int totalAppleValue = 0;
+//		int totalGrainValue = 0;
+//		for (int i = 0; i < this.height; i ++) {
+//			for (int j = 0; j < this.width; j ++) {
+//				this.spot[i][j].getValue();
+//				
+//				if (this.spot[i][j].toString().equals("A")) {
+//					totalAppleValue += this.spot[i][j].getValue();
+//				} else if (this.spot[i][j].toString().equals("G")) {
+//					totalGrainValue += this.spot[i][j].getValue();
+//					
+//				}
+//			}
+//		}
+//		return totalValue;
+//	}
 	
-	public String getSummary() {
+	public void getSummary() {
+		System.out.printf("%-30.30s  %-30.30s%n", "Apples:", 1);
+		System.out.printf("%-30.30s  %-30.30s%n", "Grains:", 6);
+		System.out.printf("%-30.30s  %-30.30s%n", "Soil:", 5);
+		System.out.printf("%-30.30s  %-30.30s%n", "Untilled:", 4);
+		System.out.printf("%-30.30s  %-30.30s%n", "Weed:", 3);
+		System.out.println("For total of");
+		System.out.printf("%-30.30s  %-30.30s%n", "Total apples created: ", 1);
+		System.out.printf("%-30.30s  %-30.30s%n", "Total grain created: ", 0);
 		
 	}
 	
@@ -128,7 +136,7 @@ public class Field {
 		a.tick();
 		a.tick();
 		a.printField();
-		System.out.println(a.getValue());
+		a.getSummary();
 	}
 
 	
