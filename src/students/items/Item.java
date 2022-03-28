@@ -7,7 +7,7 @@ public abstract class Item {
 	protected double maturationAge;
 	protected double deathAge;
 	protected double monteryValue;
-	protected String itemName = "default";
+	protected String itemName = ".";
 	
 	//Initialize variable
 	public Item(double maturationAge, double deathAge, double monteryValue) {
