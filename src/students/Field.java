@@ -125,9 +125,9 @@ public class Field {
 		
 		for (int i = 0; i < this.height; i ++) {
 			for (int j = 0; j < this.width; j ++) {
-				if (this.spot[i][j].getName() == "a" || this.spot[i][j].getName() == "A") {
+				if (this.spot[i][j].getName() == "A") {
 					totalApple++;
-				} else if (this.spot[i][j].getName() == "g" || this.spot[i][j].getName() == "G") {
+				} else if (this.spot[i][j].getName() == "G") {
 					totalGrain++;
 				} else if (this.spot[i][j].getName() == "." ) {
 					totalSoil++;
@@ -159,7 +159,7 @@ public class Field {
 		Apples apple = new Apples();
 		apple.setAge(2);
 		a.plant(2, 1, apple);
-		apple.tick();
+	
 		a.tick();
 		System.out.println(a);
 		System.out.println(a.getSummary());
