@@ -44,7 +44,7 @@ public abstract class Item {
 	
 	//Return value if the age is larger than maturationAge
 	public int getValue() {
-		if (this.age > this.maturationAge) {
+		if (this.age >= this.maturationAge) {
 			return (int)this.monteryValue;
 		} else if (this.maturationAge == Double.POSITIVE_INFINITY) {
 			return (int)this.monteryValue;
