@@ -15,31 +15,10 @@ import java.util.Random;
 
 public class Field {
 	Item[][] spot;
-	private int height;
-	private int width;
+	protected int height;
+	protected int width;
+	protected String newField = new String();
 	
-	
-    public void printField() {
-    	  
-		for (int i = 0; i <= this.width; i ++) {
-			if (i == 0) {
-				System.out.print(" ");
-				System.out.print("\t");
-			} else {
-				System.out.print(i);
-				System.out.print("\t");
-			}
-    	}
-		
-		System.out.println("\n");
-		for (int i = 0; i < this.height; i ++) {
-			System.out.print(i + 1 + "\t");
-			for (int j = 0; j < this.width; j ++) {
-				System.out.print(this.spot[i][j].toString() + "\t");
-			}
-			System.out.println("\n");
-		}
-    }
 	
 	public Field(int height, int width) {
 		this.height = height;
@@ -52,6 +31,29 @@ public class Field {
 				this.spot[i][j] = ground;
 			}
 		}
+		
+		this.spot.toString();
+	}
+	
+	public String toString() {
+		for (int i = 0; i <= this.width; i ++) {
+			if (i == 0) {
+				this.newField += " " + "\t";
+			} else {
+				this.newField += i + "\t";
+			}
+    	}
+		
+		this.newField += "\n" + "\n";
+		for (int i = 0; i < this.height; i ++) {
+			this.newField += i + 1 +"\t";
+			for (int j = 0; j < this.width; j ++) {
+				this.newField += this.spot[i][j].toString() + "\t";
+			}
+			this.newField += "\n" + "\n";
+		}
+		
+		return this.newField;
 	}
 	
 	public void tick() {
@@ -94,25 +96,23 @@ public class Field {
 		return this.spot[y - 1][x - 1].getName();
 	}
 	
-//	public int getValue() {
-//		Dictionary<String, Integer> totalValue = new Hashtable<String, Integer>();
-//		
-//		int totalAppleValue = 0;
-//		int totalGrainValue = 0;
-//		for (int i = 0; i < this.height; i ++) {
-//			for (int j = 0; j < this.width; j ++) {
-//				this.spot[i][j].getValue();
-//				
-//				if (this.spot[i][j].toString().equals("A")) {
-//					totalAppleValue += this.spot[i][j].getValue();
-//				} else if (this.spot[i][j].toString().equals("G")) {
-//					totalGrainValue += this.spot[i][j].getValue();
-//					
-//				}
-//			}
-//		}
-//		return totalValue;
-//	}
+	public int getValue() {
+		
+		int totalValue = 0;
+		for (int i = 0; i < this.height; i ++) {
+			for (int j = 0; j < this.width; j ++) {
+				this.spot[i][j].getValue();
+				
+				if (this.spot[i][j].toString().equals("A")) {
+					totalValue += this.spot[i][j].getValue();
+				} else if (this.spot[i][j].toString().equals("G")) {
+					totalValue += this.spot[i][j].getValue();
+					
+				}
+			}
+		}
+		return totalValue;
+	}
 	
 	public void getSummary() {
 		System.out.printf("%-30.30s  %-30.30s%n", "Apples:", 1);
@@ -128,16 +128,9 @@ public class Field {
 	
 	public static void main(String[] args) {
 		Field a = new Field(5, 10);
-		a.printField();
-		Apples apple = new Apples();
-		a.plant(3, 4, apple);
-		a.printField();
-		a.tick();
-		a.tick();
-		a.tick();
-		a.printField();
-		a.getSummary();
+		System.out.println(a);
 	}
+
 
 	
 
