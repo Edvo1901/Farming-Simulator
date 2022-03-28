@@ -2,6 +2,7 @@ package students;
 
 import students.items.Apples;
 import students.items.Food;
+import students.items.Grain;
 import students.items.Item;
 import students.items.Soil;
 import students.items.UntilledSoil;
@@ -17,9 +18,7 @@ public class Field {
 	Item[][] spot;
 	protected int height;
 	protected int width;
-	protected String newField = new String();
-	
-	
+
 	public Field(int height, int width) {
 		this.height = height;
 		this.width = width;
@@ -36,24 +35,26 @@ public class Field {
 	}
 	
 	public String toString() {
+		String newField = new String();
+		
 		for (int i = 0; i <= this.width; i ++) {
 			if (i == 0) {
-				this.newField += " " + "\t";
+				newField += " " + "\t";
 			} else {
-				this.newField += i + "\t";
+				newField += i + "\t";
 			}
     	}
 		
-		this.newField += "\n" + "\n";
+		newField += "\n" + "\n";
 		for (int i = 0; i < this.height; i ++) {
-			this.newField += i + 1 +"\t";
+			newField += i + 1 +"\t";
 			for (int j = 0; j < this.width; j ++) {
-				this.newField += this.spot[i][j].toString() + "\t";
+				newField += this.spot[i][j].toString() + "\t";
 			}
-			this.newField += "\n" + "\n";
+			newField += "\n" + "\n";
 		}
 		
-		return this.newField;
+		return newField;
 	}
 	
 	public void tick() {
@@ -114,21 +115,54 @@ public class Field {
 		return totalValue;
 	}
 	
-	public void getSummary() {
-		System.out.printf("%-30.30s  %-30.30s%n", "Apples:", 1);
-		System.out.printf("%-30.30s  %-30.30s%n", "Grains:", 6);
-		System.out.printf("%-30.30s  %-30.30s%n", "Soil:", 5);
-		System.out.printf("%-30.30s  %-30.30s%n", "Untilled:", 4);
-		System.out.printf("%-30.30s  %-30.30s%n", "Weed:", 3);
-		System.out.println("For total of");
-		System.out.printf("%-30.30s  %-30.30s%n", "Total apples created: ", 1);
-		System.out.printf("%-30.30s  %-30.30s%n", "Total grain created: ", 0);
+	public String getSummary() {
+		String summaryStr = new String();
+		int totalApple = 0;
+		int totalGrain = 0;
+		int totalSoil = 0;
+		int totalUntilled = 0;
+		int totalWeed = 0;
 		
+		for (int i = 0; i < this.height; i ++) {
+			for (int j = 0; j < this.width; j ++) {
+				if (this.spot[i][j].getName() == "a" || this.spot[i][j].getName() == "A") {
+					totalApple++;
+				} else if (this.spot[i][j].getName() == "g" || this.spot[i][j].getName() == "G") {
+					totalGrain++;
+				} else if (this.spot[i][j].getName() == "." ) {
+					totalSoil++;
+				} else if (this.spot[i][j].getName() == "/" ) {
+					totalUntilled++;
+				} else if (this.spot[i][j].getName() == "#" ) {
+					totalWeed++;
+				}
+			}
+		}
+		
+		int totalMoney = 0;
+		totalMoney = getValue();
+		
+		summaryStr += String.format("%-15.50s  %-15.50s%n", "Apples:", totalApple);
+		summaryStr += String.format("%-15.50s  %-15.50s%n", "Grain:", totalGrain);
+		summaryStr += String.format("%-15.50s  %-15.50s%n", "Soil:", totalSoil);
+		summaryStr += String.format("%-15.50s  %-15.50s%n", "Untilled:", totalUntilled);
+		summaryStr += String.format("%-15.50s  %-15.50s%n", "Weed:", totalWeed);
+		summaryStr += String.format("%-15.50s  %-15.50s%n", "For a total of ", "$" + totalMoney);
+		summaryStr += String.format("%-15.50s  %-15.50s%n", "Total apples created:", Apples.getGenerationCount());
+		summaryStr += String.format("%-15.50s  %-15.50s%n", "Total grain created:", Grain.getGenerationCount());
+		
+		return summaryStr;
 	}
 	
 	public static void main(String[] args) {
 		Field a = new Field(5, 10);
+		Apples apple = new Apples();
+		apple.setAge(2);
+		a.plant(2, 1, apple);
+		apple.tick();
+		a.tick();
 		System.out.println(a);
+		System.out.println(a.getSummary());
 	}
 
 
