@@ -19,7 +19,7 @@ public class Apples extends Food{
 		} else {
 			this.itemName = "A";
 		}
-		return itemName;
+		return this.itemName;
 	}
 	
 	public static int getCall=0;

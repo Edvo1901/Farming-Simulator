@@ -102,13 +102,8 @@ public class Field {
 		int totalValue = 0;
 		for (int i = 0; i < this.height; i ++) {
 			for (int j = 0; j < this.width; j ++) {
-				this.spot[i][j].getValue();
-				
-				if (this.spot[i][j].toString().equals("A")) {
+				if (this.spot[i][j].getValue() != 0) {
 					totalValue += this.spot[i][j].getValue();
-				} else if (this.spot[i][j].toString().equals("G")) {
-					totalValue += this.spot[i][j].getValue();
-					
 				}
 			}
 		}
@@ -125,29 +120,26 @@ public class Field {
 		
 		for (int i = 0; i < this.height; i ++) {
 			for (int j = 0; j < this.width; j ++) {
-				if (this.spot[i][j].getName() == "A") {
+				if (this.spot[i][j].toString() == "a" || this.spot[i][j].toString() == "A") {
 					totalApple++;
-				} else if (this.spot[i][j].getName() == "G") {
+				} else if (this.spot[i][j].toString() == "g" || this.spot[i][j].toString() == "G") {
 					totalGrain++;
-				} else if (this.spot[i][j].getName() == "." ) {
+				} else if (this.spot[i][j].toString() == "." ) {
 					totalSoil++;
-				} else if (this.spot[i][j].getName() == "/" ) {
+				} else if (this.spot[i][j].toString() == "/" ) {
 					totalUntilled++;
-				} else if (this.spot[i][j].getName() == "#" ) {
+				} else if (this.spot[i][j].toString() == "#") {
 					totalWeed++;
 				}
 			}
 		}
-		
-		int totalMoney = 0;
-		totalMoney = getValue();
 		
 		summaryStr += String.format("%-15.50s  %-15.50s%n", "Apples:", totalApple);
 		summaryStr += String.format("%-15.50s  %-15.50s%n", "Grain:", totalGrain);
 		summaryStr += String.format("%-15.50s  %-15.50s%n", "Soil:", totalSoil);
 		summaryStr += String.format("%-15.50s  %-15.50s%n", "Untilled:", totalUntilled);
 		summaryStr += String.format("%-15.50s  %-15.50s%n", "Weed:", totalWeed);
-		summaryStr += String.format("%-15.50s  %-15.50s%n", "For a total of ", "$" + totalMoney);
+		summaryStr += String.format("%-15.50s  %-15.50s%n", "For a total of ", "$" + this.getValue());
 		summaryStr += String.format("%-15.50s  %-15.50s%n", "Total apples created:", Apples.getGenerationCount());
 		summaryStr += String.format("%-15.50s  %-15.50s%n", "Total grain created:", Grain.getGenerationCount());
 		
@@ -155,14 +147,16 @@ public class Field {
 	}
 	
 	public static void main(String[] args) {
-		Field a = new Field(5, 10);
-		Apples apple = new Apples();
-		apple.setAge(2);
-		a.plant(2, 1, apple);
-	
-		a.tick();
-		System.out.println(a);
-		System.out.println(a.getSummary());
+		Field field = new Field(5, 5);
+		Apples apple2 = new Apples();
+		Grain grain = new Grain();
+		field.plant(3, 3, grain);
+		field.plant(4, 4, apple2);
+		field.tick();
+		field.tick();
+		System.out.println();
+		System.out.println(field);
+		System.out.println(field.getSummary());
 	}
 
 
