@@ -80,7 +80,7 @@ public class Field {
 	}
 	
 	public void plant(int x, int y, Food item) {
-		this.spot[y - 1][x - 1] = item;
+		this.spot[y][x] = item;
 	}
 	
 	public void till(int x, int y) {
