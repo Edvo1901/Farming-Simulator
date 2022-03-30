@@ -1,10 +1,8 @@
 package students.items;
 
 public class Apples extends Food{
-	double appleObject = 0;
-
 	public Apples() {
-		super(3, 5, 3);
+		super(3, 5, 3, 2);
 		
 		getCall++;
 	}
