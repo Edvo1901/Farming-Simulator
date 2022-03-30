@@ -8,9 +8,6 @@ import students.items.Soil;
 import students.items.UntilledSoil;
 import students.items.Weed;
 
-import java.lang.Math;
-import java.util.Dictionary;
-import java.util.Hashtable;
 import java.util.Random;
 
 
