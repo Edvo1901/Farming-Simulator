@@ -51,6 +51,9 @@ public class Farm {
 					
 					this.farming.till(xcoord - 1, ycoord - 1);
 					this.farming.tick();
+					
+				} catch (NumberFormatException e) {
+					System.out.println("Your choose of location is either invalid or out of range of the field\n");
 				} catch (Exception e){
 					System.out.println("Your choice of Till location must be a in form \"t (int)x (int)y\"!\n");
 				}
@@ -68,7 +71,8 @@ public class Farm {
 						System.out.println("There is no valuable plant at this spot.\n");
 					}
 					this.farming.tick();
-					
+				} catch (NumberFormatException e) {
+					System.out.println("Your choose of location is either invalid or out of range of the field\n");
 				} catch (Exception e) {
 					System.out.println("Your choice of Harvest location must be a in form \"h (int)x (int)y!\n");
 				}
@@ -104,6 +108,8 @@ public class Farm {
 					} else {
 						System.out.println("This spot is not available to plant.\n");
 					}
+				} catch (NumberFormatException e) {
+					System.out.println("Your choose of location is either invalid or out of range of the field\n");
 				} catch (Exception e) {
 					System.out.println("Your choice of Plant location must be a in form \"p (int)x (int)y!\n");
 				}
