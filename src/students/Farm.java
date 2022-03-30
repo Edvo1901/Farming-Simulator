@@ -2,6 +2,9 @@ package students;
 
 import java.util.Scanner;
 
+import students.items.Apples;
+import students.items.Grain;
+
 public class Farm {
 	protected int fieldWidth;
 	protected int fieldHeight;
@@ -23,6 +26,12 @@ public class Farm {
 	{
 		
 		while (isRunning) {
+			System.out.println("---Welcome to Farming Simulator (2022)---"
+					+ "\n# Developer: Vi Dong (Edward) Vo"
+					+ "\n# Student ID: 110322027"
+					+ "\n# Email ID: voyvy005@mymail.unisa.edu.au"
+					+ "\n# This is my own work as defined by the University's "
+					+ "Academic Misconduct policy.\n");
 			System.out.println(this.farming);
 			System.out.println("Bank balance: $" + this.basicFunds);
 			Scanner userInput = new Scanner(System.in);
@@ -34,42 +43,53 @@ public class Farm {
 					+ "\n  w: wait"
 					+ "\n  q: quit");
 			String userChoice = userInput.nextLine();
-			if (userChoice.replaceAll("\\s", "").replaceAll("\\d","").toLowerCase().equals("t")){
-				while (userChoice.replaceAll("\\s", "").replaceAll("\\d","").toLowerCase().equals("t")) {
-					if (Character.isDigit(userChoice.replaceAll("\\D+","").charAt(0)) && Character.isDigit(userChoice.replaceAll("\\D+","").charAt(1))) {
-						till(userChoice.replaceAll("\\D+","").charAt(0), userChoice.replaceAll("\\D+","").charAt(1));
-					} else {
-						System.out.println("Sorry, your choice of Till is invalid. Please choose again!\n");
-					}
+			if (userChoice.substring(0,1).toLowerCase().equals("t")){
+				try {
+					int xcoord = Integer.parseInt(userChoice.substring(2,3));
+					int ycoord = Integer.parseInt(userChoice.substring(4,5));
+					
+					this.farming.till(xcoord - 1, ycoord - 1);
+				} catch (Exception e){
+					System.out.println("Your choice of Till location must be a in form \"t (int)x (int)y\"!\n");
 				}
-			} else if (userChoice.replaceAll("\\s", "").replaceAll("\\d","").toLowerCase().equals("h")) {
+			} else if (userChoice.substring(0,1).toLowerCase().equals("h")) {
 				System.out.print("1");
-			} else if (userChoice.replaceAll("\\s", "").replaceAll("\\d","").toLowerCase().equals("p")) {
-				while (userChoice.replaceAll("\\s", "").replaceAll("\\d","").toLowerCase().equals("p")) {
-					Scanner plantInput = new Scanner(System.in);
-					System.out.println("Enter:"
-							+ "\n- \"a\" to buy an apple for $"
-							+ "\n- \"g\" to buy an grain for $");
-					String plantChoice = plantInput.nextLine();
-					if (plantChoice.toLowerCase().equals("a")) {
-						plant(userChoice.replaceAll("\\D+","").charAt(0), userChoice.replaceAll("\\D+","").charAt(1), "a");
-						userChoice = "";
-					} else if (plantChoice.toLowerCase().equals("g")) {
-						plant(userChoice.replaceAll("\\D+","").charAt(0), userChoice.replaceAll("\\D+","").charAt(1), "g");
-						userChoice = "";
-					} else {
-						System.out.println("Sorry, your choice of plant is invalid. Please choose again!\n");
+			} else if (userChoice.substring(0,1).toLowerCase().equals("p")) {
+				try {
+					int xcoord = Integer.parseInt(userChoice.substring(2,3));
+					int ycoord = Integer.parseInt(userChoice.substring(4,5));
+					while (userChoice.substring(0,1).toLowerCase().equals("p")) {
+						Scanner plantInput = new Scanner(System.in);
+						System.out.println("Enter:"
+								+ "\n- \"a\" to buy an apple for $"
+								+ "\n- \"g\" to buy an grain for $");
+						String plantChoice = plantInput.nextLine();
+						
+						if (plantChoice.toLowerCase().equals("a")) {
+							Apples apple = new Apples();
+							this.basicFunds -= apple.getValue();
+							this.farming.plant(xcoord - 1 , ycoord - 1, apple);
+							userChoice = "";
+						} else if (plantChoice.toLowerCase().equals("g")) {
+							Grain grain = new Grain();
+							this.basicFunds -= grain.getValue();
+							this.farming.plant(xcoord - 1, ycoord - 1, grain);
+							userChoice = "";
+						} else {
+							System.out.println("Sorry, your choice of plant is invalid. Please choose again!\n");
+						}
 					}
+				} catch (Exception e) {
+					System.out.println("Your choice of Plant location must be a in form \"p (int)x (int)y!\n");
 				}
-
 			} else if (userChoice.toLowerCase().equals("s")){
-				summary();
+				System.out.println(this.farming.getSummary());
 			} else if (userChoice.toLowerCase().equals("w")){
-				waiting();
+				this.farming.tick();
 			} else if (userChoice.toLowerCase().equals("q")) {
-				quit();
+				isRunning = false;
 			} else {
-				System.out.println("Sorry");
+				System.out.println("***There are something wrong with your choice! Please check the form and your choice again***\n");
 			}
 		}
 	}
@@ -78,32 +98,9 @@ public class Farm {
 		this.farming.till(x - 1, y - 1);
 	}
 	
-	public void plant(int x, int y, String fruit) {
-		
-	}
-	
-	public void waiting() {
-		this.farming.tick();
-	}
-	
-	public String summary() {
-		return this.farming.getSummary();
-	}
-	
-	public boolean quit() {
-		return isRunning = false;
-	}
-	
 	public static void main(String[] args) {
-//		Farm abc = new Farm(5, 10, 10);
-//		abc.run();
-		String a = "t 1 4";
-		System.out.println(a.replaceAll("\\D+",""));
-		if (Character.isDigit(a.replaceAll("\\D+","").charAt(0)) && Character.isDigit(a.replaceAll("\\D+","").charAt(1))) {
-			System.out.println("True");
-		} else {
-			System.out.println("Sorry, your choice of Till is invalid. Please choose again!\n");
-		}
+		Farm abc = new Farm(5, 10, 10);
+		abc.run();
 	}
 	
 }
