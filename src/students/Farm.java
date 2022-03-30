@@ -51,7 +51,6 @@ public class Farm {
 					
 					this.farming.till(xcoord - 1, ycoord - 1);
 					this.farming.tick();
-					
 				} catch (NumberFormatException e) {
 					System.out.println("Your choose of location is either invalid or out of range of the field\n");
 				} catch (Exception e){
@@ -63,9 +62,11 @@ public class Farm {
 					int ycoord = Integer.parseInt(userChoice.substring(4,5));
 					if (this.farming.get(xcoord - 1, ycoord - 1) instanceof Apples) {
 						this.basicFunds += this.farming.get(xcoord - 1, ycoord - 1).getValue();
+						System.out.println("You have sold an Apple for $" + this.farming.get(xcoord - 1, ycoord - 1).getValue() + "\n");
 						this.farming.till(xcoord - 1, ycoord - 1);
 					} else if (this.farming.get(xcoord - 1, ycoord - 1) instanceof Grain) {
 						this.basicFunds += this.farming.get(xcoord - 1, ycoord - 1).getValue();
+						System.out.println("You have sold a Grain for $%s" + this.farming.get(xcoord - 1, ycoord - 1).getValue() + "\n");
 						this.farming.till(xcoord - 1, ycoord - 1);
 					} else {
 						System.out.println("There is no valuable plant at this spot.\n");
@@ -107,6 +108,7 @@ public class Farm {
 						this.farming.tick();
 					} else {
 						System.out.println("This spot is not available to plant.\n");
+						this.farming.tick();
 					}
 				} catch (NumberFormatException e) {
 					System.out.println("Your choose of location is either invalid or out of range of the field\n");
@@ -119,6 +121,7 @@ public class Farm {
 				this.farming.tick();
 			} else if (userChoice.toLowerCase().equals("q")) {
 				isRunning = false;
+				System.out.println("We are looking forward to seeing you again! - Developed by Vi Dong (Edward) Vo.");
 			} else {
 				System.out.println("***There are something wrong with your choice! Please check the form and your choice again***\n");
 			}
