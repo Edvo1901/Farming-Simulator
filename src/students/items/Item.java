@@ -7,7 +7,7 @@ public abstract class Item {
 	protected double maturationAge;
 	protected double deathAge;
 	protected double monteryValue;
-	protected double costValue;
+	protected static double costValue;
 	protected String itemName = ".";
 	
 	//Initialize variable
@@ -35,8 +35,8 @@ public abstract class Item {
 		return this.itemName;
 	}
 	
-	public int getCost() {
-		return (int)this.costValue;
+	public static int getCost() {
+		return (int)costValue;
 	}
 	
 	//Return boolean to check if object meet the died condition
