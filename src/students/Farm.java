@@ -61,25 +61,30 @@ public class Farm {
 					while (userChoice.substring(0,1).toLowerCase().equals("p")) {
 						Scanner plantInput = new Scanner(System.in);
 						System.out.println("Enter:"
-								+ "\n- \"a\" to buy an apple for $"
-								+ "\n- \"g\" to buy an grain for $");
+								+ "\n- \"a\" to buy an apple for $2"
+								+ "\n- \"g\" to buy an grain for $1");
 						String plantChoice = plantInput.nextLine();
-						
-						if (plantChoice.toLowerCase().equals("a")) {
+						System.out.println(Apples.getCost());
+						if (plantChoice.toLowerCase().equals("a") && this.basicFunds >= Apples.getCost()) {
+							System.out.println(Apples.getCost());
 							Apples apple = new Apples();
-							this.basicFunds -= apple.getValue();
+							System.out.println(Apples.getCost());
+							this.basicFunds -= Apples.getCost();
 							this.farming.plant(xcoord - 1 , ycoord - 1, apple);
-							userChoice = "";
-						} else if (plantChoice.toLowerCase().equals("g")) {
+							break;
+						} else if (plantChoice.toLowerCase().equals("g") && this.basicFunds >= Grain.getCost()) {
 							Grain grain = new Grain();
-							this.basicFunds -= grain.getValue();
+							this.basicFunds -= Grain.getCost();
 							this.farming.plant(xcoord - 1, ycoord - 1, grain);
-							userChoice = "";
+							break;
+						} else if (this.basicFunds < Grain.getCost() || this.basicFunds < Apples.getCost()){
+							System.out.println("You don\'t have enough money for plant that fruits.");
 						} else {
 							System.out.println("Sorry, your choice of plant is invalid. Please choose again!\n");
 						}
 					}
 				} catch (Exception e) {
+					System.out.println(e);
 					System.out.println("Your choice of Plant location must be a in form \"p (int)x (int)y!\n");
 				}
 			} else if (userChoice.toLowerCase().equals("s")){
