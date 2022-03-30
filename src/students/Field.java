@@ -143,21 +143,4 @@ public class Field {
 		
 		return summaryStr;
 	}
-	
-	public static void main(String[] args) {
-		Field field = new Field(5, 5);
-		Apples apple2 = new Apples();
-		Grain grain = new Grain();
-		field.plant(3, 3, grain);
-		field.plant(4, 4, apple2);
-		field.tick();
-		field.tick();
-		System.out.println();
-		System.out.println(field);
-		System.out.println(field.getSummary());
-	}
-
-
-	
-
 }
