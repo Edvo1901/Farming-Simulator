@@ -55,7 +55,23 @@ public class Farm {
 					System.out.println("Your choice of Till location must be a in form \"t (int)x (int)y\"!\n");
 				}
 			} else if (userChoice.substring(0,1).toLowerCase().equals("h")) {
-				System.out.print("1");
+				try {
+					int xcoord = Integer.parseInt(userChoice.substring(2,3));
+					int ycoord = Integer.parseInt(userChoice.substring(4,5));
+					if (this.farming.get(xcoord - 1, ycoord - 1) instanceof Apples) {
+						this.basicFunds += this.farming.get(xcoord - 1, ycoord - 1).getValue();
+						this.farming.till(xcoord - 1, ycoord - 1);
+					} else if (this.farming.get(xcoord - 1, ycoord - 1) instanceof Grain) {
+						this.basicFunds += this.farming.get(xcoord - 1, ycoord - 1).getValue();
+						this.farming.till(xcoord - 1, ycoord - 1);
+					} else {
+						System.out.println("There is no valuable plant at this spot.\n");
+					}
+					this.farming.tick();
+					
+				} catch (Exception e) {
+					System.out.println("Your choice of Harvest location must be a in form \"h (int)x (int)y!\n");
+				}
 			} else if (userChoice.substring(0,1).toLowerCase().equals("p")) {
 				try {
 					int xcoord = Integer.parseInt(userChoice.substring(2,3));
