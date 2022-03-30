@@ -7,7 +7,7 @@ public abstract class Item {
 	protected double maturationAge;
 	protected double deathAge;
 	protected double monteryValue;
-	protected static double costValue;
+	protected double costValue;
 	protected String itemName = ".";
 	
 	//Initialize variable
@@ -35,7 +35,7 @@ public abstract class Item {
 		return this.itemName;
 	}
 	
-	public static int getCost() {
+	public int getCost() {
 		return (int)costValue;
 	}
 	

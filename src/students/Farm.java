@@ -88,17 +88,17 @@ public class Farm {
 									+ "\n- \"a\" to buy an apple for $2"
 									+ "\n- \"g\" to buy an grain for $1");
 							String plantChoice = plantInput.nextLine();
-							if (plantChoice.toLowerCase().equals("a") && this.basicFunds >= Apples.getCost()) {
+							if (plantChoice.toLowerCase().equals("a") && this.basicFunds >= this.farming.get(xcoord - 1, ycoord - 1).getCost()) {
 								Apples apple = new Apples();
 								this.farming.plant(xcoord - 1 , ycoord - 1, apple);
-								this.basicFunds -= Apples.getCost();
+								this.basicFunds -= this.farming.get(xcoord - 1, ycoord - 1).getCost();
 								break;
-							} else if (plantChoice.toLowerCase().equals("g") && this.basicFunds >= Grain.getCost()) {
+							} else if (plantChoice.toLowerCase().equals("g") && this.basicFunds >= this.farming.get(xcoord - 1, ycoord - 1).getCost()) {
 								Grain grain = new Grain();
-								this.basicFunds -= Grain.getCost();
+								this.basicFunds -= this.farming.get(xcoord - 1, ycoord - 1).getCost();
 								this.farming.plant(xcoord - 1, ycoord - 1, grain);
 								break;
-							} else if (this.basicFunds < Grain.getCost() || this.basicFunds < Apples.getCost()){
+							} else if (this.basicFunds < this.farming.get(xcoord - 1, ycoord - 1).getCost()){
 								System.out.println("You don\'t have enough money for plant that fruits.");
 								break;
 							} else {
