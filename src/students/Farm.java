@@ -115,11 +115,11 @@ public class Farm {
 				} catch (Exception e) {
 					System.out.println("Your choice of Plant location must be a in form \"p (int)x (int)y!\n");
 				}
-			} else if (userChoice.toLowerCase().equals("s")){
+			} else if (userChoice.replaceAll(" ", "").toLowerCase().equals("s")){
 				System.out.println(this.farming.getSummary());
-			} else if (userChoice.toLowerCase().equals("w")){
+			} else if (userChoice.replaceAll(" ", "").toLowerCase().equals("w")){
 				this.farming.tick();
-			} else if (userChoice.toLowerCase().equals("q")) {
+			} else if (userChoice.replaceAll(" ", "").toLowerCase().equals("q")) {
 				isRunning = false;
 				System.out.println("We are looking forward to seeing you again! - Developed by Vi Dong (Edward) Vo.");
 			} else {
@@ -129,8 +129,8 @@ public class Farm {
 	}
 	
 	public static void main(String[] args) {
-		Farm abc = new Farm(5, 10, 10);
-		abc.run();
+		Farm farm = new Farm(5, 10, 10);
+		farm.run();
 	}
 	
 }
