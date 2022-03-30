@@ -103,10 +103,6 @@ public class Farm {
 		}
 	}
 	
-	public void till(int x, int y) {
-		this.farming.till(x - 1, y - 1);
-	}
-	
 	public static void main(String[] args) {
 		Farm abc = new Farm(5, 10, 10);
 		abc.run();
