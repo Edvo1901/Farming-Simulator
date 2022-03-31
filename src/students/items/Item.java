@@ -27,14 +27,17 @@ public abstract class Item {
 		this.age = newAge;
 	}
 	
+	//Return the age of the item
 	public double getAge() {
 		return this.age;
 	}
 	
+	//Return name of the item
 	public String getName() {
 		return this.itemName;
 	}
 	
+	//Return cost of plant
 	public int getCost() {
 		return (int)costValue;
 	}
@@ -77,6 +80,7 @@ public abstract class Item {
 		return false;
 	}
 	
+	//An abstract function implemented by subclasses
 	public abstract String toString();
 	
 }
