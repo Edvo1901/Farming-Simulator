@@ -94,7 +94,7 @@ public class Field {
 				
 				//Generate a random chance to get Grasshopper on player's plant
 				if (this.spot[i][j] instanceof Apples || this.spot[i][j] instanceof Grain) {
-					int spawnGrassChance = rnd.nextInt(2);
+					int spawnGrassChance = rnd.nextInt(10);
 					if (spawnGrassChance == 1) {
 						Grasshopper gs = new Grasshopper();
 						this.spot[i][j] = gs;
@@ -183,6 +183,8 @@ public class Field {
 		int totalSoil = 0;
 		int totalUntilled = 0;
 		int totalWeed = 0;
+		int totalGrass = 0;
+		int totalGolden = 0;
 		
 		for (int i = 0; i < this.height; i ++) {
 			for (int j = 0; j < this.width; j ++) {
@@ -200,6 +202,10 @@ public class Field {
 					totalUntilled++;
 				} else if (this.spot[i][j].toString() == "#") {
 					totalWeed++;
+				} else if (this.spot[i][j].toString() == "*") {
+					totalGrass++;
+				} else if (this.spot[i][j].toString() == "#") {
+					totalGolden++;
 				}
 			}
 		}
@@ -210,6 +216,8 @@ public class Field {
 		summaryStr += String.format("%-15.50s  %-15.50s%n", "Soil:", totalSoil);
 		summaryStr += String.format("%-15.50s  %-15.50s%n", "Untilled:", totalUntilled);
 		summaryStr += String.format("%-15.50s  %-15.50s%n", "Weed:", totalWeed);
+		summaryStr += String.format("%-15.50s  %-15.50s%n", "Grasshopper:", totalGrass);
+		summaryStr += String.format("%-15.50s  %-15.50s%n", "Golden Tree:", totalGolden);
 		summaryStr += String.format("%-15.50s  %-15.50s%n", "For a total of ", "$" + this.getValue());
 		summaryStr += String.format("%-15.50s  %-15.50s%n", "Total apples created:", Apples.getGenerationCount());
 		summaryStr += String.format("%-15.50s  %-15.50s%n", "Total grain created:", Grain.getGenerationCount());

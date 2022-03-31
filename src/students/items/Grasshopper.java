@@ -40,10 +40,13 @@ public class Grasshopper extends Item{
 		boolean isWin = false;
 		Scanner playGame = new Scanner(System.in);
 		while (isPlaying) {
-			System.out.println("\nEnter your choice: "
-					+ "\n Rock: r"
-					+ "\n Paper: p"
-					+ "\n Scissor: s");
+			System.out.print("\n===Welcome to RPS MiniGame==="
+					+ "\nMake your move and let see if you can protect your land"
+					+ "\nEnter your choice: "
+					+ "\n1. Rock: r"
+					+ "\n2. Paper: p"
+					+ "\n3. Scissor: s"
+					+ "Your choice: ");
 			String gameChoice = playGame.nextLine();
 			
 			//List of available choice for computer
@@ -57,32 +60,32 @@ public class Grasshopper extends Item{
 			if (!gameChoice.toLowerCase().equals("s") 
 					&& !gameChoice.toLowerCase().equals("p") 
 					&& !gameChoice.toLowerCase().equals("r")){
-				System.out.println("Your choice is invalid.");
+				System.out.println("Please only choose either Rock (r), Paper (p) or Scissor (s).");
 				isPlaying = true;
 			
 			} else {
 				//Draw result
 				if (gameChoice.equals(availableChoice[randomComputerChoice])) {
-					System.out.println("Draw!!! Good luck next time.");
+					System.out.println("Draw!!! You will win next round. :) \n");
 					isPlaying = true;
 					
 				//Win result
 				} else if (availableChoice[randomComputerChoice].equals("r") && gameChoice.equals("p")) {
-					System.out.println("You win! Congrastulation");
+					System.out.println("You won! Yohoooo :)\n");
 					isPlaying = false;
 					isWin = true;
 				} else if (availableChoice[randomComputerChoice].equals("p") && gameChoice.equals("s")) {
-					System.out.println("You win! Congrastulation");
+					System.out.println("You won! Yohoooo :)\\n");
 					isPlaying = false;
 					isWin = true;
 				} else if (availableChoice[randomComputerChoice].equals("s") && gameChoice.equals("r")) {
-					System.out.println("You win! Congrastulation");
+					System.out.println("You won! Yohoooo :)\\n");
 					isPlaying = false;
 					isWin = true;
 				
 				//Lose result
 				} else {
-					System.out.println("You lose! Better luck next time!");
+					System.out.println("Well, you lose! Better luck next time :(\n");
 					isPlaying = false;
 					isWin = false;
 				}
