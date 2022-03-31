@@ -46,7 +46,7 @@ public class Grasshopper extends Item{
 					+ "\n1. Rock: r"
 					+ "\n2. Paper: p"
 					+ "\n3. Scissor: s"
-					+ "Your choice: ");
+					+ "\nYour choice: ");
 			String gameChoice = playGame.nextLine();
 			
 			//List of available choice for computer
