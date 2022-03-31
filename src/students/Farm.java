@@ -3,6 +3,7 @@ package students;
 import java.util.Scanner;
 
 import students.items.Apples;
+import students.items.GoldenTree;
 import students.items.Grain;
 import students.items.Grasshopper;
 import students.items.Soil;
@@ -47,17 +48,22 @@ public class Farm {
 						+ "\n  q: quit");
 				String userChoice = userInput.nextLine();
 
-				String tempChoice = userChoice.substring(0,2).trim();
-				String coord = userChoice.substring(2);
-				String test[] = coord.split(" ");
-				int xcoord = Integer.parseInt(test[0]);
-				int ycoord = Integer.parseInt(test[1]);
+				String tempChoice = userChoice.substring(0,1).trim();
+				int xcoord = 0;
+				int ycoord = 0;
+				
+						
+				System.out.println(userChoice);
 				
 				if (userChoice.substring(0,1).toLowerCase().equals("t")){
 					try {
+						String coord = userChoice.substring(2);
+						String test[] = coord.split(" ");
+						xcoord = Integer.parseInt(test[0]);
+						ycoord = Integer.parseInt(test[1]);
 						
 						this.farming.till(xcoord - 1, ycoord - 1);
-						this.farming.tick();
+						this.farming.tick("default");
 					} catch (NumberFormatException e) {
 						System.out.println("Your choose of location is either invalid or out of range of the field\n");
 					} catch (Exception e){
@@ -65,18 +71,29 @@ public class Farm {
 					}
 				} else if (userChoice.substring(0,1).toLowerCase().equals("h")) {
 					try {
+						String coord = userChoice.substring(2);
+						String test[] = coord.split(" ");
+						xcoord = Integer.parseInt(test[0]);
+						ycoord = Integer.parseInt(test[1]);
 						if (this.farming.get(xcoord - 1, ycoord - 1) instanceof Apples) {
 							this.basicFunds += this.farming.get(xcoord - 1, ycoord - 1).getValue();
 							System.out.println("You have sold an Apple for $" + this.farming.get(xcoord - 1, ycoord - 1).getValue() + "\n");
 							this.farming.till(xcoord - 1, ycoord - 1);
+							this.farming.turnUntilled(xcoord - 1, ycoord - 1);
 						} else if (this.farming.get(xcoord - 1, ycoord - 1) instanceof Grain) {
 							this.basicFunds += this.farming.get(xcoord - 1, ycoord - 1).getValue();
-							System.out.println("You have sold a Grain for $%s" + this.farming.get(xcoord - 1, ycoord - 1).getValue() + "\n");
+							System.out.println("You have sold a Grain for $" + this.farming.get(xcoord - 1, ycoord - 1).getValue() + "\n");
 							this.farming.till(xcoord - 1, ycoord - 1);
+							this.farming.turnUntilled(xcoord - 1, ycoord - 1);
+						} else if (this.farming.get(xcoord - 1, ycoord - 1) instanceof GoldenTree) {
+							this.basicFunds += this.farming.get(xcoord - 1, ycoord - 1).getValue();
+							System.out.println("You have sold a Golden Tree for $" + this.farming.get(xcoord - 1, ycoord - 1).getValue() + "\n");
+							this.farming.till(xcoord - 1, ycoord - 1);
+							this.farming.turnUntilled(xcoord - 1, ycoord - 1);
 						} else {
 							System.out.println("There is no valuable plant at this spot.\n");
 						}
-						this.farming.tick();
+						this.farming.tick("default");
 					} catch (NumberFormatException e) {
 						System.out.println("Your choose of location is either invalid or out of range of the field\n");
 					} catch (Exception e) {
@@ -84,7 +101,12 @@ public class Farm {
 					}
 				} else if (userChoice.substring(0,1).toLowerCase().equals("p")) {
 					try {
+						String coord = userChoice.substring(2);
+						String test[] = coord.split(" ");
+						xcoord = Integer.parseInt(test[0]);
+						ycoord = Integer.parseInt(test[1]);
 						if (this.farming.get(xcoord - 1, ycoord - 1) instanceof Soil) {
+
 							while (userChoice.substring(0,1).toLowerCase().equals("p")) {
 								Scanner plantInput = new Scanner(System.in);
 								System.out.println("Enter:"
@@ -108,46 +130,57 @@ public class Farm {
 									System.out.println("Sorry, your choice of plant is invalid. Please choose again!\n");
 								}
 							}
-							this.farming.tick();
+							this.farming.tick("default");
 						} else {
 							System.out.println("This spot is not available to plant.\n");
-							this.farming.tick();
+							this.farming.tick("default");
 						}
 					} catch (NumberFormatException e) {
 						System.out.println("Your choose of location is either invalid or out of range of the field\n");
 					} catch (Exception e) {
-						System.out.println("Your choice of Plant location must be a in form \"p (int)x (int)y!\n");
+						
+						System.out.println("Your choice of Plant location must be a in form \"p (int)x (int)y!\n" + e);
 					}
 				} else if (userChoice.substring(0,1).toLowerCase().equals("f")) {
 					try {
+						String coord = userChoice.substring(2);
+						String test[] = coord.split(" ");
+						xcoord = Integer.parseInt(test[0]);
+						ycoord = Integer.parseInt(test[1]);
 						if (this.farming.get(xcoord - 1, ycoord - 1) instanceof Grasshopper) {
+							Grasshopper grasshopper = new Grasshopper();
 							if (Grasshopper.miniGame()) {
-								System.out.println("win");
-								this.basicFunds += 5;
+								GoldenTree goldenTree = new GoldenTree();
+								this.basicFunds += grasshopper.getValue();
+								this.farming.plant(xcoord - 1, ycoord - 1, goldenTree);
+								this.farming.tick("winner");
 							} else {
-								System.out.println("lose");
-								this.basicFunds -= 5;
+								this.basicFunds -= grasshopper.getValue();
+								this.farming.turnUntilled(xcoord - 1, ycoord - 1);
+								this.farming.tick("loser");
 							}
+							
 						} else {
 							System.out.println("This spot does not have any Grasshopper. You just waste a turn :) !\n");
-							this.farming.tick();
+							this.farming.tick("default");
 						}
 					} catch (NumberFormatException e) {
 						System.out.println("Your choose of location is either invalid or out of range of the field\n");
 					} catch (Exception e) {
-						System.out.println("Your choice of Plant location must be a in form \"p (int)x (int)y!\n");
+						System.out.println("Your choice of Fight location must be a in form \"f (int)x (int)y!\n");
 					}
-				} else if (userChoice.replaceAll(" ", "").toLowerCase().equals("s")){
+				} else if (tempChoice.toLowerCase().equals("s")){
 					System.out.println(this.farming.getSummary());
-				} else if (userChoice.replaceAll(" ", "").toLowerCase().equals("w")){
-					this.farming.tick();
-				} else if (userChoice.replaceAll(" ", "").toLowerCase().equals("q")) {
+				} else if (tempChoice.toLowerCase().equals("w")){
+					this.farming.tick("default");
+				} else if (tempChoice.toLowerCase().equals("q")) {
 					isRunning = false;
 					System.out.println("We are looking forward to seeing you again! - Developed by Vi Dong (Edward) Vo.");
 				} else {
 					System.out.println("***There are something wrong with your choice! Please check the form and your choice again***\n");
 				}
 			} catch (Exception e) {
+				System.out.println(e);
 				System.out.println("Your enter is invalid, please enter \"t\", \"h\", \"p\", \"f\", \"s\", \"w\", or \"q\"\n");
 			}
 		}
