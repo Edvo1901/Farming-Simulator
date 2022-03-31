@@ -37,7 +37,7 @@ public class Farm {
 		//Check while loop condition
 		while (isRunning) {
 			try {
-				System.out.println("---Welcome to Farming Simulator (2022)---"
+				System.out.println("\n---Welcome to Farming Simulator (2022)---"
 						+ "\n# Developer: Vi Dong (Edward) Vo"
 						+ "\n# Student ID: 110322027"
 						+ "\n# Email ID: voyvy005@mymail.unisa.edu.au"

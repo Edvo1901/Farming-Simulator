@@ -46,7 +46,7 @@ public class Field {
 				
 				/**
 				This is a part of additional feature.
-				It has nothing related to the orginal assignment.
+				It has nothing related to the original assignment.
 
 				For more information about how this is work, please read the Readme file.
 
@@ -62,7 +62,6 @@ public class Field {
 					int winnerChance = rnd.nextInt(10);
 					if (winnerChance == 1 && this.spot[i][j] instanceof Soil) {
 						Weed rndWeed = new Weed();
-						System.out.println("Winner rate" + winnerChance);
 						this.spot[i][j] = rndWeed;
 					}
 					break;
@@ -72,7 +71,6 @@ public class Field {
 					int loserChance = rnd.nextInt(3);
 					if (loserChance == 1 && this.spot[i][j] instanceof Soil) {
 						Weed rndWeed = new Weed();
-						System.out.println("Loser rate" + loserChance);
 						this.spot[i][j] = rndWeed;
 					}
 					break;
@@ -82,7 +80,6 @@ public class Field {
 					int chance = rnd.nextInt(5);
 					if (chance == 1 && this.spot[i][j] instanceof Soil) {
 						Weed rndWeed = new Weed();
-						System.out.println("Normal rate" + chance);
 						this.spot[i][j] = rndWeed;
 					}
 					break;
@@ -102,7 +99,7 @@ public class Field {
 						Grasshopper gs = new Grasshopper();
 						this.spot[i][j] = gs;
 						
-						//Show this meassge to notify player
+						//Show this message to notify player
 						System.out.println("!!! One of your plant got Grasshopper,"
 								+ " fight it to protect your plant!!!\n");
 					}
