@@ -3,11 +3,13 @@ package students;
 import students.items.Apples;
 import students.items.Food;
 import students.items.Grain;
+import students.items.Grasshopper;
 import students.items.Item;
 import students.items.Soil;
 import students.items.UntilledSoil;
 import students.items.Weed;
 
+import java.util.Optional;
 import java.util.Random;
 
 
@@ -54,23 +56,57 @@ public class Field {
 		return newField;
 	}
 	
-	public void tick() {
+	public void tick(String result) {
+		
 	    
 		for (int i = 0; i < this.height; i ++) {
 			for (int j = 0; j < this.width; j ++) {
 				this.spot[i][j].tick();
 				
+				Optional<String> ln = Optional.ofNullable(result);
+				String a = ln.isPresent() ? ln.get() : "Not Given";
 				Random rnd = new Random();
-				int chance = rnd.nextInt(5);
-				if (chance == 1 && this.spot[i][j] instanceof Soil) {
-					Weed rndWeed = new Weed();
-					this.spot[i][j] = rndWeed;
+				switch (a) {
+				case "winner":
+					int winnerChance = rnd.nextInt(10);
+					if (winnerChance == 1 && this.spot[i][j] instanceof Soil) {
+						Weed rndWeed = new Weed();
+						System.out.println("Winner rate" + winnerChance);
+						this.spot[i][j] = rndWeed;
+					}
+					break;
+				case "loser":
+					int loserChance = rnd.nextInt(3);
+					if (loserChance == 1 && this.spot[i][j] instanceof Soil) {
+						Weed rndWeed = new Weed();
+						System.out.println("Loser rate" + loserChance);
+						this.spot[i][j] = rndWeed;
+					}
+					break;
+				default:
+					int chance = rnd.nextInt(5);
+					if (chance == 1 && this.spot[i][j] instanceof Soil) {
+						Weed rndWeed = new Weed();
+						System.out.println("Normal rate" + chance);
+						this.spot[i][j] = rndWeed;
+					}
+					break;
 				}
 				
 				if (this.spot[i][j].died()) {
 					UntilledSoil deadPlant = new UntilledSoil();
 					this.spot[i][j] = deadPlant;
 				
+				}
+				
+				if (this.spot[i][j] instanceof Apples || this.spot[i][j] instanceof Grain) {
+					int spawnGrassChance = rnd.nextInt(2);
+					if (spawnGrassChance == 1) {
+						Grasshopper gs = new Grasshopper();
+						this.spot[i][j] = gs;
+						System.out.println("!!! One of your plant got Grasshopper,"
+								+ " fight it to protect your plant!!!\n");
+					}
 				}
 			}
 		}
@@ -81,11 +117,13 @@ public class Field {
 	}
 	
 	public void till(int x, int y) {
-		
 		Soil newSoil = new Soil();
 		this.spot[y][x] = newSoil;
-
-			
+	}
+	
+	public void turnUntilled(int x, int y) {
+		UntilledSoil deadPlant = new UntilledSoil();
+		this.spot[y][x] = deadPlant;
 	}
 	
 	public Item get(int x, int y) {

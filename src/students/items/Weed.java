@@ -5,8 +5,6 @@ public class Weed extends Item {
 
 	public Weed() {
 		super(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, -1);
-		
-		this.itemName = "#";
 	}
 	
 	public String toString() {

@@ -77,8 +77,6 @@ public abstract class Item {
 		return false;
 	}
 	
-	public String toString() {
-		return " ";
-	}
+	public abstract String toString();
 	
 }
