@@ -3,6 +3,7 @@ package students;
 import students.items.Apples;
 import students.items.Food;
 import students.items.Grain;
+import students.items.Grasshopper;
 import students.items.Item;
 import students.items.Soil;
 import students.items.UntilledSoil;
@@ -72,6 +73,17 @@ public class Field {
 					this.spot[i][j] = deadPlant;
 				
 				}
+				
+				if (this.spot[i][j] instanceof Food) {
+					int storeAge = (int)this.spot[i][j].getAge();
+					int spawnGrassChance = rnd.nextInt(2);
+					if (spawnGrassChance == 1) {
+						Grasshopper gs = new Grasshopper();
+						this.spot[i][j] = gs;
+						System.out.println("!!! One of your plant got Grasshopper,"
+								+ " fight it to protect your plant!!!\n");
+					}
+				}
 			}
 		}
 	}
@@ -81,11 +93,8 @@ public class Field {
 	}
 	
 	public void till(int x, int y) {
-		
 		Soil newSoil = new Soil();
 		this.spot[y][x] = newSoil;
-
-			
 	}
 	
 	public Item get(int x, int y) {
