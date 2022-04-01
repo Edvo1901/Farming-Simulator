@@ -101,7 +101,7 @@ public class Field {
 				
 				//Generate a random chance to get Grasshopper on player's plant
 				if (this.spot[i][j] instanceof Apples || this.spot[i][j] instanceof Grain) {
-					int spawnGrassChance = rnd.nextInt(2);
+					int spawnGrassChance = rnd.nextInt(10);
 					if (spawnGrassChance == 1) {
 						Grasshopper gs = new Grasshopper();
 						this.spot[i][j] = gs;
