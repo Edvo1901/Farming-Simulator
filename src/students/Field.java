@@ -18,6 +18,8 @@ public class Field {
 	Item[][] spot;
 	protected int height;
 	protected int width;
+	private int isTilledX = -1;
+	private int isTilledY = -1;
 
 	public Field(int height, int width) {
 		this.height = height;
@@ -77,6 +79,11 @@ public class Field {
 				
 				//Default chance to get Weed throughout the game
 				default:
+					if (i == isTilledY && j == isTilledX) {
+						isTilledY = -1;
+						isTilledX = -1;
+						continue;
+					}
 					int chance = rnd.nextInt(5);
 					if (chance == 1 && this.spot[i][j] instanceof Soil) {
 						Weed rndWeed = new Weed();
@@ -94,14 +101,15 @@ public class Field {
 				
 				//Generate a random chance to get Grasshopper on player's plant
 				if (this.spot[i][j] instanceof Apples || this.spot[i][j] instanceof Grain) {
-					int spawnGrassChance = rnd.nextInt(10);
+					int spawnGrassChance = rnd.nextInt(2);
 					if (spawnGrassChance == 1) {
 						Grasshopper gs = new Grasshopper();
 						this.spot[i][j] = gs;
 						
 						//Show this message to notify player
 						System.out.println("!!! One of your plant got Grasshopper,"
-								+ " fight it to protect your plant!!!\n");
+								+ " fight it to protect your plant!!!\n"
+								+ "\nWarning: You will lose your plant after 2 turn if ignore Grasshopper.");
 					}
 				}
 			}
@@ -155,6 +163,12 @@ public class Field {
 	public void turnUntilled(int x, int y) {
 		UntilledSoil deadPlant = new UntilledSoil();
 		this.spot[y][x] = deadPlant;
+	}
+	
+	//Store the tilled spot avoid the weed grow again
+	public void isTilled(int x, int y) {
+		isTilledX = x;
+		isTilledY = y;
 	}
 
 	//Return total value of all the plant in the field

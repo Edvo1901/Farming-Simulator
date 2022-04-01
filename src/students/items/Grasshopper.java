@@ -40,15 +40,6 @@ public class Grasshopper extends Item{
 		boolean isWin = false;
 		Scanner playGame = new Scanner(System.in);
 		while (isPlaying) {
-			System.out.print("\n===Welcome to RPS MiniGame==="
-					+ "\nMake your move and let see if you can protect your land"
-					+ "\nEnter your choice: "
-					+ "\n1. Rock: r"
-					+ "\n2. Paper: p"
-					+ "\n3. Scissor: s"
-					+ "\nYour choice: ");
-			String gameChoice = playGame.nextLine();
-			
 			//List of available choice for computer
 			String[] availableChoice = {"r", "p", "s"};  
 			Random computerChoice = new Random();
@@ -56,6 +47,17 @@ public class Grasshopper extends Item{
 			//Random the choice from giving list
 			int randomComputerChoice = computerChoice.nextInt(availableChoice.length);
 			
+			System.out.print("\n===Welcome to RPS MiniGame==="
+					+ "\nMake your move and let see if you can protect your land"
+					+ "\nEnter your choice: "
+					+ "\n1. Rock: r"
+					+ "\n2. Paper: p"
+					+ "\n3. Scissor: s"
+					//+ "\nComputer choose: " + availableChoice[randomComputerChoice] + " (This is for testing purpose)"
+					+ "\nYour choice: ");
+			String gameChoice = playGame.nextLine();
+			
+
 			//Show a message if player enter invalid value
 			if (!gameChoice.toLowerCase().equals("s") 
 					&& !gameChoice.toLowerCase().equals("p") 
@@ -75,11 +77,11 @@ public class Grasshopper extends Item{
 					isPlaying = false;
 					isWin = true;
 				} else if (availableChoice[randomComputerChoice].equals("p") && gameChoice.equals("s")) {
-					System.out.println("You won! Yohoooo :)\\n");
+					System.out.println("You won! Yohoooo :)\n");
 					isPlaying = false;
 					isWin = true;
 				} else if (availableChoice[randomComputerChoice].equals("s") && gameChoice.equals("r")) {
-					System.out.println("You won! Yohoooo :)\\n");
+					System.out.println("You won! Yohoooo :)\n");
 					isPlaying = false;
 					isWin = true;
 				

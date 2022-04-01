@@ -72,6 +72,9 @@ public class Farm {
 						xcoord = Integer.parseInt(test[0]);
 						ycoord = Integer.parseInt(test[1]);
 						
+						//Store the tilled spot
+						this.farming.isTilled(xcoord - 1, ycoord - 1);
+						
 						//Till the spot
 						this.farming.till(xcoord - 1, ycoord - 1);
 						
@@ -241,7 +244,7 @@ public class Farm {
 								GoldenTree goldenTree = new GoldenTree();
 								
 								//Add money reward
-								this.basicFunds += grasshopper.getValue();
+								this.basicFunds += 3;
 								
 								//Giving out a free Golden Tree
 								this.farming.plant(xcoord - 1, ycoord - 1, goldenTree);
@@ -249,8 +252,8 @@ public class Farm {
 								//Decrease the chance of getting Weed next round
 								this.farming.tick("winner");
 							} else {
-								//Remove money as fine
-								this.basicFunds -= grasshopper.getValue();
+								//Remove money as fine;
+								this.basicFunds -= 3;
 								
 								//Turn the plant to UntilledSoil
 								this.farming.turnUntilled(xcoord - 1, ycoord - 1);
@@ -291,7 +294,6 @@ public class Farm {
 					System.out.println("***There are something wrong with your choice! Please check the form and your choice again***\n");
 				}
 			} catch (Exception e) {
-				System.out.println(e);
 				System.out.println("Your enter is invalid, please enter \"t\", \"h\", \"p\", \"f\", \"s\", \"w\", or \"q\"\n");
 			}
 		}
