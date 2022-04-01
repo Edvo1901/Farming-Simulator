@@ -16,6 +16,23 @@ throughout the game. You will have many options to choose and grow your business
 7. Wait: turn to next round for everything to grow up.
 8. Quit: end the game.
 
+## Before you test additional feature (This is for testing purpose only)
+1. By default, the Grasshopper appear chance is 10%. This might be too small if you want to test out the feature. You can make a change to the percent to make it easier for testing.
+
+Intruction: Head to the Field.java file, line 104.  
+```int spawnGrassChance = rnd.nextInt(10);```  
+Change to  
+```int spawnGrassChance = rnd.nextInt(2);```  
+Now you will have 50% chance that Grasshopper will appear.
+
+2. Sometime, it is really hard to win the Rock, Paper, Scissor game to see how this feature work.  
+
+Intruction: Head to the Grasshopper.java file, line 56.  
+```//+ "\nComputer choose: " + availableChoice[randomComputerChoice] + " (This is for testing purpose)"```  
+Change to (uncommented it)  
+```+ "\nComputer choose: " + availableChoice[randomComputerChoice] + " (This is for testing purpose)"```  
+Now before you make the choice, it will print out the computer choice so you can counter it. Remember: r = Rock, p = Paper, s = Scissor.
+
 ## Additional Feature
 1. Which tutor did you speak to about additional feature?
 - Mr. James Walsh
